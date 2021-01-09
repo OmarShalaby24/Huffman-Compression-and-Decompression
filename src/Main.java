@@ -3,9 +3,36 @@ import java.util.PriorityQueue;
 public class Main {
     public static void main(String[] args) {
         String str;
-        str = "Hello World";
+        str = "Hello World\nsecond line\nthird line\nline for symbols and digits like 1 2 3 4 5 67890";
+        char[] letter = new char[str.length()];
+        int[] frequency = new int[str.length()];
 
-        System.out.println(str.charAt(0));
+        int i,j,k=0,flag=0;
+        char iterator;
+
+        for(i=0;i<str.length();i++){
+            iterator = str.charAt(i);
+            for(j=0;j<str.length();j++){
+                flag=1;
+                if(letter[j]==iterator){
+                    frequency[j]++;
+                    flag=0;
+                    break;
+                }
+            }
+            if(flag==1){
+                letter[k] = iterator;
+                frequency[k]++;
+                k++;
+            }
+        }
+        System.out.println("letter\tfrequency");
+        for (i=0 ; i< letter.length;i++){
+            if((int)letter[i]==0){
+                break;
+            }
+            System.out.println(letter[i]+"\t\t"+frequency[i]);
+        }
 
     }
 }
