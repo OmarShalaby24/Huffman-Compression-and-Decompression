@@ -1,9 +1,20 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.PriorityQueue;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         String str;
-        str = "Hello World\nsecond line\nthird line\nline for symbols and digits like 1 2 3 4 5 67890";
+        String filename;
+
+        System.out.print("Enter File Name:");
+        filename = sc.nextLine();
+        //str = readFile("test.txt");
+        str = readFile(filename);
+        //str = "Hello World\nsecond line\nthird line\nline for symbols and digits like 1 2 3 4 5 67890";
         char[] letter = new char[str.length()];
         int[] frequency = new int[str.length()];
 
@@ -31,8 +42,17 @@ public class Main {
             if((int)letter[i]==0){
                 break;
             }
-            System.out.println(letter[i]+"\t\t"+frequency[i]);
+            System.out.println("'"+letter[i]+"'"+"\t\t"+frequency[i]);
         }
+    }
 
+    public static String readFile(String filename){
+        String string = "";
+        try{
+            string = new String(Files.readAllBytes(Paths.get(filename)));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return string;
     }
 }
